@@ -89,7 +89,7 @@ public class TabShiftTypePanel extends javax.swing.JPanel {
     }
     
     public Boolean getNight(){
-        return jNightTextField.getText().equals(true);
+        return jNightTextField.getText().equals("true");
     }
     
     public void setNight(Boolean text){
