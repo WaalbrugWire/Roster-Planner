@@ -168,6 +168,8 @@ public class NurseRosteringImporter extends AbstractXmlSolutionImporter<NurseRos
                 shiftDate.setId(id);
                 //not using dayIndex anymore, WaalbrugWire, 7-5-2018
                 //shiftDate.setDayIndex(dayIndex);
+                //above change caused some rules using dayindex not firing anymore, WaalbrugWire 27-9-2018
+                shiftDate.setDayIndex(dayIndex);
                 shiftDate.setDate(date);
                 shiftDate.setShiftList(new ArrayList<>());
                 shiftDateList.add(shiftDate);
