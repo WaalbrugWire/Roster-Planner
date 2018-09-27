@@ -35,7 +35,9 @@ public class ShiftDate extends AbstractPersistable {
     private static final DateTimeFormatter LABEL_LONG_FORMATTER = DateTimeFormatter.ofPattern("E d MMM YYYY");  //WaalbrugWire, 5-5-2018, added year (YYYY) to format for label, but LABEL_FORMATTER is used in heading as well
 
     //setting dayIndex to 0 as it gives problems later when we change the daterange WaalbrugWire, 5-5-2018
-    private int dayIndex = 0; // TODO check if still needed/faster now that we use LocalDate instead of java.util.Date
+    //undo setting the dayindex to 0 as it is still needed in the rules, WaalbrugWire, 27-9-2018 
+    //private int dayIndex = 0;
+    private int dayIndex; // TODO check if still needed/faster now that we use LocalDate instead of java.util.Date
     private LocalDate date;
 
     private List<Shift> shiftList;
@@ -46,7 +48,8 @@ public class ShiftDate extends AbstractPersistable {
 
     public void setDayIndex(int dayIndex) {
         this.dayIndex = dayIndex;
-        this.dayIndex = 0; //first step in disabling dayIndex , WaalbrugWire, 5-5-2018
+        //this.dayIndex = 0; //first step in disabling dayIndex , WaalbrugWire, 5-5-2018
+        //undone  dayIndex is still used in some of the rules, WaalbrugWire, 27-9-2018
     }
 
     public LocalDate getDate() {
