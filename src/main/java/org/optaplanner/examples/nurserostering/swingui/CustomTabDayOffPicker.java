@@ -47,7 +47,6 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
     Employee employee;
     List<DayOffRequest> holidays = null; 
     
-    
     private List<JLabel> dateLabels;
     
     LocalDate firstDate;
@@ -72,14 +71,14 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
         this.setCalendarPanelStartDay(startDate);
         CalendarPanel calendarPanel = getCalendarPanel();
         DatePickerSettings dateSettings = new DatePickerSettings();
-        //dateSettings.setDateRangeLimits(startDate.getDate(), endDate.getDate());
         dateSettings.setColor(DateArea.CalendarBackgroundSelectedDate, Color.RED);
         dateSettings.setHighlightPolicy(new DayOffOnHighLightPolicy(employee, holidays));
         calendarPanel.setSettings(dateSettings);
         ArrayList<CalendarListener> calendarListeners = calendarPanel.getCalendarListeners();
         DayOffCalendarListener listener = new DayOffCalendarListener();
         calendarPanel.addCalendarListener(listener);
-    }    
+        
+    }
     
     @Override
     public void handleCalendarPanelMouseClicked(java.awt.event.MouseEvent evt){
@@ -97,9 +96,7 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
         List<ShiftDate> shiftDateList = nurseRoster.getShiftDateList();
         DayOffRequest dayOffRequest = null; 
         Map<ShiftDate, DayOffRequest> dayOffRequestMap = employee.getDayOffRequestMap();
-        
         dateLabels = new ArrayList<>(daysOfSelectedMonth);
-        
         DatePickerSettings dateSettings = calendarPanel.getSettings();
         LocalDate selectedDate = calendarPanel.getSelectedDate();
         
@@ -110,6 +107,7 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                     shiftDate = thisShiftDate;
                 }
             }
+            
             dayOffRequest = new DayOffRequest();
             dayOffRequest.setEmployee(employee);
             dayOffRequest.setShiftDate(shiftDate);
@@ -134,12 +132,11 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                     if ( requestToRemove != null) {
                             holidays.remove(requestToRemove);
                     }
-                    
                     dayOffRequestMap.remove(shiftDate);
                     System.out.println("DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
                     //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
                 }
-                dayOffRequestMap.put(shiftDate, dayOffRequest);
+            }
         }
         else {
             if ( firstDate == null && selectedDate != null ) {
@@ -157,7 +154,6 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                 LocalDate thisDate = firstDate;
                 dayOffRequest = new DayOffRequest();
                 long max = dayOffRequest.getMaxId(holidays);
-                //-1l;
                 
                 dayOffRequestMap = employee.getDayOffRequestMap();
                 for ( ShiftDate thisShiftDate : shiftDateList ) {
@@ -187,10 +183,10 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                             dayOffRequestMap.remove(thisShiftDate);
                             System.out.println("DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
                             //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
-                            
                         }
                     }
                 }
+
             }
         }
         
