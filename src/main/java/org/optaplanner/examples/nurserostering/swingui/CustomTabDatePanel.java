@@ -288,7 +288,8 @@ public class CustomTabDatePanel extends TabDatePanel{
             }
         }
         */
-        JOptionPane.showMessageDialog(this, "Removed " + (count - dayOffRequests.size()) + " old day off requests);");
+        System.out.println("Purge: Removed " + (count - dayOffRequests.size()) + " old day off requests);");
+        //JOptionPane.showMessageDialog(this, "Removed " + (count - dayOffRequests.size()) + " old day off requests);");
                     
         for (Employee employee : employeeList){
             count = 0;
@@ -302,7 +303,8 @@ public class CustomTabDatePanel extends TabDatePanel{
                 }
                 //else entry.getKey().setDayIndex(0);
             }
-            JOptionPane.showMessageDialog(this, "Removed " + count + " day off requests for employee " + employee);
+            System.out.println("Purge: Removed " + count + " day off requests for employee " );
+            //JOptionPane.showMessageDialog(this, "Removed " + count + " day off requests for employee " + employee);
         }
         
         return count;
