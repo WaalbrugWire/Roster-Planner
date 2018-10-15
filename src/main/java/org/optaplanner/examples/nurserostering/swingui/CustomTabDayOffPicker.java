@@ -47,7 +47,7 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
     Employee employee;
     List<DayOffRequest> holidays = null; 
     
-    //we should get the real dateLabels out of the CalendarPanel
+    
     private List<JLabel> dateLabels;
     
     LocalDate firstDate;
@@ -77,12 +77,9 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
         dateSettings.setHighlightPolicy(new DayOffOnHighLightPolicy(employee, holidays));
         calendarPanel.setSettings(dateSettings);
         ArrayList<CalendarListener> calendarListeners = calendarPanel.getCalendarListeners();
-        //JOptionPane.showMessageDialog(this, "Calendar has " + calendarListeners.size() + " listeners. Adding one listener.");
         DayOffCalendarListener listener = new DayOffCalendarListener();
         calendarPanel.addCalendarListener(listener);
-        //JOptionPane.showMessageDialog(this, "Calendar now has " + calendarListeners.size() + " listeners.");  //still says 0
-        
-    }
+    }    
     
     @Override
     public void handleCalendarPanelMouseClicked(java.awt.event.MouseEvent evt){
@@ -103,21 +100,9 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
         
         dateLabels = new ArrayList<>(daysOfSelectedMonth);
         
-        /* 
-            problem will be here we dont have a reference to the actual dateLabels
-            inside the calendar so how are we gonna paint their backgrounds???
-         */
-        
-        
         DatePickerSettings dateSettings = calendarPanel.getSettings();
         LocalDate selectedDate = calendarPanel.getSelectedDate();
         
-        //there are more PropertyChanges so we not always will have a selectedDate
-        //will we have a selectedDate???? MouseClicked handle never fired???
-        
-        //if ( selectedDate != null ) {
-        //    JOptionPane.showMessageDialog(this, "You selected a date!!! " + selectedDate.toString());  
-        //}
         if(getSingleDayRadioButtonSelected() && selectedDate != null) {
             singleDate = selectedDate;
             for( ShiftDate thisShiftDate : shiftDateList){
@@ -125,20 +110,11 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                     shiftDate = thisShiftDate;
                 }
             }
-            //shiftDate = new ShiftDate();
-            //shiftDate.setDate(selectedDate);
             dayOffRequest = new DayOffRequest();
             dayOffRequest.setEmployee(employee);
             dayOffRequest.setShiftDate(shiftDate);
             dayOffRequest.setWeight(1);
-            /* old, use getMaxId() now
-            long max = -1l;
-            for(DayOffRequest holiday : holidays){
-                if( holiday.getId() > max){
-                    max = holiday.getId();
-                }
-            }
-            */
+            
             dayOffRequest.setId(dayOffRequest.getMaxId(holidays) + 1);
             //only add day offs for current roster period
             if (shiftDate != null){
@@ -158,31 +134,12 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                     if ( requestToRemove != null) {
                             holidays.remove(requestToRemove);
                     }
-                    //dayOffRequestMap.remove(shiftDate, dayOffRequest);  //dayOffRequest isnt the same object here
+                    
                     dayOffRequestMap.remove(shiftDate);
-                    JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
+                    System.out.println("DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
+                    //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
                 }
-                
-                //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests for " + employee + " is " + dayOffRequestMap.size());
-                //int sizeBefore = dayOffRequestMap.size();
                 dayOffRequestMap.put(shiftDate, dayOffRequest);
-                //int sizeAfter = dayOffRequestMap.size();
-                /* this was more for debug reasons
-                if ( sizeAfter >= sizeBefore && dayOffRequestMap.containsKey(shiftDate))
-                    JOptionPane.showMessageDialog(calendarPanel, "added DayOffRequests  " + employee + " date " + shiftDate + " is " + dayOffRequestMap.size());
-                //employee.setDayOffRequestMap(dayOffRequestMap);  //should not be needed
-                if (employee.getDayOffRequestMap().containsKey(shiftDate)){
-                    JOptionPane.showMessageDialog(calendarPanel, "added DayOffRequests  " + employee + " date " + shiftDate + " is " + dayOffRequestMap.size());
-                }
-                else {
-                    JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest no longer found??? " + employee + " date " + shiftDate + " is " + dayOffRequestMap.size());
-                
-                }
-                */
-                //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests for " + employee + " is " + dayOffRequestMap.size());
-            }
-            
-            //JOptionPane.showMessageDialog(this, "You addeed a single holiday " + selectedDate.toString() + " with index " + shiftDate.getDayIndex() + " total holidays " + holidays.size());
         }
         else {
             if ( firstDate == null && selectedDate != null ) {
@@ -208,19 +165,11 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                         dayOffRequest = new DayOffRequest();
                         dayOffRequest.setEmployee(employee);
                         dayOffRequest.setShiftDate(thisShiftDate);
-                        //if (dayOffRequest.getShiftDate() == thisShiftDate ){
-                        //    JOptionPane.showMessageDialog(null, "Shiftdates for day off equal");
-                        //}
-                        //else
-                        //    JOptionPane.showMessageDialog(null, "Shiftdates for day off do not equal");
-                        
                         dayOffRequest.setWeight(1);
                         dayOffRequest.setId(max++ + 1); 
                         if (getAddRadioButtonSelected()){
                             holidays.add(dayOffRequest);
-                            //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests for " + employee + " is " + dayOffRequestMap.size());
                             dayOffRequestMap.put(thisShiftDate, dayOffRequest);
-                            //employee.setDayOffRequestMap(dayOffRequestMap);  //not sure if needed and if it will generate new instances
                         }
                         else 
                             //if (getRemoveRadioButtonSelected())
@@ -235,37 +184,13 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
                             if ( requestToRemove != null ){
                                 holidays.remove(requestToRemove);
                             }
-                            //dayOffRequestMap.remove(shiftDate, dayOffRequest);  //dayOffRequest isnt the same object here
                             dayOffRequestMap.remove(thisShiftDate);
-                            JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
-                            /*
-                            holidays.remove(dayOffRequest);
-                            //if(dayOffRequestMap.containsKey(thisShiftDate))
-                            dayOffRequestMap.remove(thisShiftDate, dayOffRequest);
-                            JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests removed for " + employee + " requests left : " + dayOffRequestMap.size());
-                            */
+                            System.out.println("DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
+                            //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequest removed for " + employee + " requests left: " + dayOffRequestMap.size() + "total requests for all employees is " + holidays.size());
+                            
                         }
                     }
                 }
-                /* old but bad creating a different shiftday
-                while ( !thisDate.isAfter(lastDate )){
-                    shiftDate = new ShiftDate();  //use actual shifTdate from shiftDate list or we can not find the key in the mapping later
-                    shiftDate.setDate(thisDate);
-                    dayOffRequest = new DayOffRequest();
-                    dayOffRequest.setEmployee(employee);
-                    dayOffRequest.setShiftDate(shiftDate);
-                    dayOffRequest.setWeight(1);
-                    dayOffRequest.setId(max++ + 1);  //max++ + 1 or just max++???
-                    holidays.add(dayOffRequest);
-                    dayOffRequestMap = employee.getDayOffRequestMap();
-                    //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests for " + employee + " is " + dayOffRequestMap.size());
-                    dayOffRequestMap.put(shiftDate, dayOffRequest);
-                    employee.setDayOffRequestMap(dayOffRequestMap);
-                    //JOptionPane.showMessageDialog(calendarPanel, "DayOffRequests for " + employee + " is " + dayOffRequestMap.size());
-                    thisDate = thisDate.plusDays(1);
-                }
-                */
-
             }
         }
         
@@ -281,29 +206,21 @@ public class CustomTabDayOffPicker extends TabDayOffPicker{
     
     @Override
     public void handleSingleDayRadioButtonSelected(){
-        //this.jSingleDayRadioButton.setSelected(true);
-        //this.jPeriodRadioButton.setSelected(false);
         setSingleDayRadioButtonSelected();
     }
     
     @Override
     public void handlePeriodRadioButtonSelected(){
-        //this.jSingleDayRadioButton.setSelected(true);
-        //this.jPeriodRadioButton.setSelected(false);
         setPeriodRadioButtonSelected();
     }
     
     @Override
     public void handleAddRadioButtonSelected(){
-        //this.jSingleDayRadioButton.setSelected(true);
-        //this.jPeriodRadioButton.setSelected(false);
         setAddRadioButtonSelected();
     }
     
     @Override
     public void handleRemoveRadioButtonSelected(){
-        //this.jSingleDayRadioButton.setSelected(true);
-        //this.jPeriodRadioButton.setSelected(false);
         setRemoveRadioButtonSelected();
     }
     
