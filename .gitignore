@@ -10,3 +10,7 @@
 /src - backup unmodified/
 /target/
 /target - testmap/
+data/nurserostering/unsolved/CWZ_20181015.xml
+local/log/optaplanner.log
+src/main/resources/logback.xml
+src/main/resources/logback.xml
