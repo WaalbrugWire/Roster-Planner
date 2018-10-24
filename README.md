@@ -24,8 +24,8 @@ The Tab files mainly contain the generated TabPanes using the visual editor
 
 The CustomTab files contain the logic and are the Controllers
 
-The doamin part is largely unchanged.
-We added some helper functions to some of the Domain Entities and several minor code changes to the SwingUI component
+The domain part is largely unchanged.
+We added some helper functions to some of the domain Entities and several minor code changes to the swingui components
 to integrate our Tabbed Panes.
 
 All our changes to the original code is (or should be) commented containing a reference to WaalbrugWire and a date. 
