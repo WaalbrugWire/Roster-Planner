@@ -38,5 +38,7 @@ for the solution for our customer.
 
 Dependencies: uses LGoodDatePicker library
 
-Build  (untested): download the 7.5.0 Final sources including examples/nurserostering and add our TabXXXPanel and CustomXXXTab files
-into the swingui directory. Adjust EmployeePanel and NurseRosteringPanel or replace them with our version
+Build  (untested): 
+- download the 7.5.0 Final sources including examples/nurserostering
+- add our TabXXXPanel and CustomTabXXXPanel files into the swingui directory.
+- adjust the EmployeePanel and NurseRosteringPanel in the swingui directory or replace them with our version
