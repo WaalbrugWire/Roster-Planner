@@ -38,7 +38,9 @@ for the solution for our customer.
 
 Dependencies: uses LGoodDatePicker library
 
-Build  (untested): 
+Build suggestion (untested): 
 - download the 7.5.0 Final sources including examples/nurserostering
+- create a project from these sources 
 - add our TabXXXPanel and CustomTabXXXPanel files into the swingui directory.
+- add our DayOffCalendarListener, DayOffOnHighLightPolicy and PrintUIWindow ito the swingui directory
 - adjust the EmployeePanel and NurseRosteringPanel in the swingui directory or replace them with our version
