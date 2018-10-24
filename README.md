@@ -16,7 +16,7 @@ Currently there are tabbed panes to edit the roster's
 The project was build under NetBeans IDE 8.2 
 We used the supplied Maven pom.xml and adjusted to our needs to build a One.jar aka Fat.jar
 
-The files consist of a a TabXXXPanel and a CustomTabXXXPanel file
+The files consist of a TabXXXPanel and a CustomTabXXXPanel file
 where XXX stands here for an Entity or logical component of the program.
 
 The Tab files mainly contain the generated TabPanes using the visual editor
