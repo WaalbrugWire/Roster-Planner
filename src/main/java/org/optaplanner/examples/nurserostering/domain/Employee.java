@@ -113,5 +113,12 @@ public class Employee extends AbstractPersistable implements Labeled {
         }
         return name;
     }
-
+    
+    //helper functions, WaalbrugWire, 25-10-2018
+    public int getWeeklyHours() {
+        int weekly_hours = -1;
+        Contract myContract = getContract();
+        weekly_hours = myContract.getWeeklyHours();
+        return weekly_hours;
+    }
 }
