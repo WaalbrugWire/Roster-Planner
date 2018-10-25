@@ -172,6 +172,7 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
         int maxIndex = lsm.getMaxSelectionIndex();
         boolean found;
         long maxId = -1l;
+        //replace this for generic function?
         for (ContractLine contractLine:contractLineList){
             if ( contractLine.getId() > maxId){
                 maxId = contractLine.getId();
@@ -192,15 +193,28 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
                     }
                 }
                 //JOptionPane.showMessageDialog(null, "Selection found ?  : " + found);
-                
-                BooleanContractLine contractLine = new BooleanContractLine();
-                contractLine.setContractLineType(thisContractLineType);
-                contractLine.setContract(currentContract);
-                contractLine.setId(maxId + 1);
-                contractLine.setEnabled(true);
-                contractLine.setWeight(1);
-                contractLineList.add(contractLine);
-                
+                if ( getBooleanContractLineRadioButtonSelected() ) {
+                    BooleanContractLine booleanContractLine = new BooleanContractLine();
+                    booleanContractLine.setContractLineType(thisContractLineType);
+                    booleanContractLine.setContract(currentContract);
+                    booleanContractLine.setId(maxId + 1);
+                    booleanContractLine.setEnabled(true);
+                    booleanContractLine.setWeight(1);
+                    contractLineList.add(booleanContractLine);
+                }
+                else if ( getMinMaxContractLineRadioButtonSelected() ) {
+                    MinMaxContractLine minMaxContractLine = new MinMaxContractLine();
+                    minMaxContractLine.setContractLineType(thisContractLineType);
+                    minMaxContractLine.setContract(currentContract);
+                    minMaxContractLine.setId(maxId + 1);
+                    minMaxContractLine.setMinimumEnabled(true);
+                    minMaxContractLine.setMaximumEnabled(true);
+                    minMaxContractLine.setMinimumValue(1);
+                    minMaxContractLine.setMaximumValue(2);
+                    minMaxContractLine.setMinimumWeight(1);
+                    minMaxContractLine.setMaximumWeight(1);
+                    contractLineList.add(minMaxContractLine);
+                }
                 //refreshing the lists
                 for (ContractLine thisContractLine:contractLineList){
                     if (contractList.get(currentContractSelection).getCode().equals(thisContractLine.getContract().getCode()) ){
@@ -370,6 +384,16 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
         }
         else
             return false;
+    }
+    
+    @Override
+    public void handleBooleanContractLineRadioButtonClicked(){
+        setBooleanContractLineRadioButtonSelected();
+    }
+    
+    @Override
+    public void handleMinMaxContractLineRadioButtonClicked(){
+        setMinMaxContractLineRadioButtonSelected();
     }
     
     @Override

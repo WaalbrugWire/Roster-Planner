@@ -71,5 +71,18 @@ public class Contract extends AbstractPersistable {
     public int getWeekendLength() {
         return weekendDefinition.getWeekendLength();
     }
+    
+    //helper functions, WaalbrugWire, 25-10-2018
+    public int getWeeklyHours() {
+        int weekly_hours = -1;
+        List<ContractLine> contractLineList = getContractLineList();
+        for ( ContractLine contractLine : contractLineList ){
+            if ( contractLine.getContractLineType() == ContractLineType.WEEKLY_HOURS && contractLine instanceof MinMaxContractLine ){
+                MinMaxContractLine minMaxContractLine = (MinMaxContractLine) contractLine;
+                weekly_hours = minMaxContractLine.getMaximumValue();
+            }
+        }
+        return weekly_hours;
+    }
 
 }

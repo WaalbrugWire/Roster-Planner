@@ -35,7 +35,22 @@
                           <Component id="jDescriptionTextField" alignment="0" max="32767" attributes="0"/>
                           <Component id="jCodeTextField" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jNewButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jDeleteButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jOKButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="jCancelButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jMinMaxContractLineRadioButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jAssignButton" min="-2" max="-2" attributes="0"/>
                           <Component id="jUnassignButton" min="-2" max="-2" attributes="0"/>
@@ -46,16 +61,7 @@
                           <Component id="jUnassignedLinesLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jOKButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jCancelButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jNewButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jDeleteButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jBooleanContractLineRadioButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
@@ -102,13 +108,15 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jNewButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jDeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBooleanContractLineRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jOKButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jMinMaxContractLineRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -290,6 +298,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUnassignButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jBooleanContractLineRadioButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Boolean Contract Line"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBooleanContractLineRadioButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jMinMaxContractLineRadioButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MinMax Contract Line"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMinMaxContractLineRadioButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
