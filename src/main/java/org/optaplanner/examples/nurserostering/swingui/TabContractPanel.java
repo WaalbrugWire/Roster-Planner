@@ -56,6 +56,14 @@ public class TabContractPanel extends javax.swing.JPanel {
     public void handleUnassignButtonClicked(){
     //Override in customTabContractPanel    
     }
+    
+    public void handleBooleanContractLineRadioButtonClicked(){
+    //Override in customTabContractPanel   
+    }
+    
+    public void handleMinMaxContractLineRadioButtonClicked(){
+    //Override in customTabContractPanel   
+    }
 
     public void handleContractListValueChanged(javax.swing.event.ListSelectionEvent evt){
     //Override in customTabContractPanel
@@ -172,6 +180,73 @@ public class TabContractPanel extends javax.swing.JPanel {
         this.jWeekendDefinitionTextField.setText(text);
     }
     
+    public boolean getBooleanContractLineRadioButtonSelected() {
+        return this.jBooleanContractLineRadioButton.isSelected();
+    }
+    
+    public void setBooleanContractLineRadioButtonSelected() {
+        this.jMinMaxContractLineRadioButton.setSelected(false);
+        this.jBooleanContractLineRadioButton.setSelected(true);
+    }
+    
+    public boolean getMinMaxContractLineRadioButtonSelected() {
+        return this.jMinMaxContractLineRadioButton.isSelected();
+    }
+    
+    public void setMinMaxContractLineRadioButtonSelected() {
+        this.jBooleanContractLineRadioButton.setSelected(false);
+        this.jMinMaxContractLineRadioButton.setSelected(true);
+    }
+    
+    /*  some getters anbd setters from DayOff as example
+    
+    public void setjSingleDayRadioButton(JRadioButton jSingleDayRadioButton) {
+        this.jSingleDayRadioButton = jSingleDayRadioButton;
+    }
+    
+    
+    
+    public void setSingleDayRadioButtonSelected() {
+        this.jPeriodRadioButton.setSelected(false);
+        this.jSingleDayRadioButton.setSelected(true);
+    }
+    
+    public JRadioButton getjAddRadioButton() {
+        return jAddRadioButton;
+    }
+
+    public void setjAddRadioButton(JRadioButton jAddRadioButton) {
+        this.jAddRadioButton = jAddRadioButton;
+    }
+    
+    public boolean getAddRadioButtonSelected() {
+        return this.jAddRadioButton.isSelected();
+    }
+    
+    public void setAddRadioButtonSelected() {
+        this.jRemoveRadioButton.setSelected(false);
+        this.jAddRadioButton.setSelected(true);
+    }
+    
+    public JRadioButton getjRemoveRadioButton() {
+        return jRemoveRadioButton;
+    }
+
+    public void setjRemoveRadioButton(JRadioButton jRemoveRadioButton) {
+        this.jRemoveRadioButton = jSingleDayRadioButton;
+    }
+    
+    public boolean getRemoveRadioButtonSelected() {
+        return this.jRemoveRadioButton.isSelected();
+    }
+    
+    public void setRemoveRadioButtonSelected() {
+        this.jAddRadioButton.setSelected(false);
+        this.jRemoveRadioButton.setSelected(true);
+    }
+    
+    */
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -203,6 +278,8 @@ public class TabContractPanel extends javax.swing.JPanel {
         jUnassignedLinesLabel = new javax.swing.JLabel();
         jAssignButton = new javax.swing.JButton();
         jUnassignButton = new javax.swing.JButton();
+        jBooleanContractLineRadioButton = new javax.swing.JRadioButton();
+        jMinMaxContractLineRadioButton = new javax.swing.JRadioButton();
 
         jContractList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -301,6 +378,20 @@ public class TabContractPanel extends javax.swing.JPanel {
             }
         });
 
+        jBooleanContractLineRadioButton.setText("Boolean Contract Line");
+        jBooleanContractLineRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBooleanContractLineRadioButtonActionPerformed(evt);
+            }
+        });
+
+        jMinMaxContractLineRadioButton.setText("MinMax Contract Line");
+        jMinMaxContractLineRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMinMaxContractLineRadioButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,8 +412,19 @@ public class TabContractPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2)
                             .addComponent(jWeekendDefinitionTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                             .addComponent(jDescriptionTextField)
-                            .addComponent(jCodeTextField))
-                        .addGap(27, 27, 27)
+                            .addComponent(jCodeTextField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jNewButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDeleteButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jOKButton)
+                        .addGap(28, 28, 28)
+                        .addComponent(jCancelButton)))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jMinMaxContractLineRadioButton)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jAssignButton)
                             .addComponent(jUnassignButton))
@@ -330,14 +432,7 @@ public class TabContractPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jUnassignedLinesLabel)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jOKButton)
-                        .addGap(28, 28, 28)
-                        .addComponent(jCancelButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jNewButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDeleteButton)))
+                    .addComponent(jBooleanContractLineRadioButton))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -374,12 +469,14 @@ public class TabContractPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNewButton)
-                    .addComponent(jDeleteButton))
+                    .addComponent(jDeleteButton)
+                    .addComponent(jBooleanContractLineRadioButton))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jOKButton)
-                    .addComponent(jCancelButton))
-                .addContainerGap())
+                    .addComponent(jCancelButton)
+                    .addComponent(jMinMaxContractLineRadioButton))
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -427,9 +524,20 @@ public class TabContractPanel extends javax.swing.JPanel {
         handleUnassignButtonClicked();
     }//GEN-LAST:event_jUnassignButtonActionPerformed
 
+    private void jBooleanContractLineRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBooleanContractLineRadioButtonActionPerformed
+        // TODO add your handling code here:
+        handleBooleanContractLineRadioButtonClicked();
+    }//GEN-LAST:event_jBooleanContractLineRadioButtonActionPerformed
+
+    private void jMinMaxContractLineRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinMaxContractLineRadioButtonActionPerformed
+        // TODO add your handling code here:
+        handleMinMaxContractLineRadioButtonClicked();
+    }//GEN-LAST:event_jMinMaxContractLineRadioButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAssignButton;
+    private javax.swing.JRadioButton jBooleanContractLineRadioButton;
     private javax.swing.JButton jCancelButton;
     private javax.swing.JTextField jCodeTextField;
     private javax.swing.JLabel jContractLabel;
@@ -440,6 +548,7 @@ public class TabContractPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jDescriptionLabel;
     private javax.swing.JTextField jDescriptionTextField;
     private javax.swing.JLabel jEditLabel;
+    private javax.swing.JRadioButton jMinMaxContractLineRadioButton;
     private javax.swing.JButton jNewButton;
     private javax.swing.JButton jOKButton;
     private javax.swing.JScrollPane jScrollPane1;

@@ -373,6 +373,16 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
     }
     
     @Override
+    public void handleBooleanContractLineRadioButtonClicked(){
+        setBooleanContractLineRadioButtonSelected();
+    }
+    
+    @Override
+    public void handleMinMaxContractLineRadioButtonClicked(){
+        setMinMaxContractLineRadioButtonSelected();
+    }
+    
+    @Override
     public void handleCancelButtonClicked(){
         int result = JOptionPane.showConfirmDialog( this.getTopLevelAncestor(), "Do you want to cancel changes? \n",
                             "Cancel changes.",
