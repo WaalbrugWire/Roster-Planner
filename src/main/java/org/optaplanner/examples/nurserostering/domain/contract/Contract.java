@@ -79,7 +79,7 @@ public class Contract extends AbstractPersistable {
         for ( ContractLine contractLine : contractLineList ){
             if ( contractLine.getContractLineType() == ContractLineType.WEEKLY_HOURS && contractLine instanceof MinMaxContractLine ){
                 MinMaxContractLine minMaxContractLine = (MinMaxContractLine) contractLine;
-                weekly_hours = minMaxContractLine.getMaximumValue();
+                return minMaxContractLine.getMaximumValue();
             }
         }
         return weekly_hours;
