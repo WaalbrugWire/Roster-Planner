@@ -218,8 +218,8 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                 initialMinValue = parsedValue;
             }
             catch (NumberFormatException e) { 
-                JOptionPane.showMessageDialog(null, "Could not parse string into int for minValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
-                System.out.println("Could not parse string into int for minValue in MinMaxContractLines");
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for minValue in MinMaxContractLines" + "\nUse numbers only! " + getMinValue() + " is not a number", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for minValue in MinMaxContractLines : " + getMinValue());
             }
             catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for minValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
@@ -232,8 +232,8 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                 initialMaxValue = parsedValue;
             }
             catch (NumberFormatException e) { 
-                JOptionPane.showMessageDialog(null, "Could not parse string into int for maxValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
-                System.out.println("Could not parse string into int for maxValue in MinMaxContractLines");
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for maxValue in MinMaxContractLines" + "\nUse numbers only! "  + getMaxValue() + " is not a number", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for maxValue in MinMaxContractLines : " + getMaxValue());
             }
             catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for maxValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
@@ -246,8 +246,8 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                 initialMinWeight = parsedValue;
             }
             catch (NumberFormatException e) { 
-                JOptionPane.showMessageDialog(null, "Could not parse string into int for minimumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
-                System.out.println("Could not parse string into int for minimumWeight in MinMaxContractLines");
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for minimumWeight in MinMaxContractLines" + "\nUse numbers only! "  + getMinWeight() + " is not a number", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for minimumWeight in MinMaxContractLines : " + getMinWeight());
             }
             catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for minimumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
@@ -260,8 +260,8 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                 initialMaxWeight = parsedValue;
             }
             catch (NumberFormatException e) { 
-                JOptionPane.showMessageDialog(null, "Could not parse string into int for maximumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
-                System.out.println("Could not parse string into int for maximumWeight in MinMaxContractLines");
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for maximumWeight in MinMaxContractLines" + "\nUse numbers only! "  + getMaxWeight() + " is not a number", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for maximumWeight in MinMaxContractLines : " + getMaxWeight());
             }
             catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for maximumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
@@ -319,30 +319,28 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
             initialWeekendDefinition = getWeekendDefinition();
         }
     }
-    
+    */
+
     @Override
     public void handleDeleteButtonClicked(){
         NurseRoster nurseRoster = mySolutionBusiness.getSolution();
-        List<Contract> contractList = nurseRoster.getContractList();
-        
-        int result = JOptionPane.showConfirmDialog( this.getTopLevelAncestor(), "Do you want to delete this contract?",
-                            "Delete Contract.",
+        List<ContractLine> contractLineList = nurseRoster.getContractLineList();
+                
+        int result = JOptionPane.showConfirmDialog( this.getTopLevelAncestor(), "Do you want to delete this MinMaxContractLine?",
+                            "Delete MinMaxContractLine.",
                             JOptionPane.OK_CANCEL_OPTION);
-                //, JOptionPane.PLAIN_MESSAGE);
+        
         if (result == JOptionPane.OK_OPTION){
             boolean succes = false;
-            if ( currentContract != null ){
-                succes = contractList.remove(currentContract);
+            if ( currentMinMaxContractLine != null ){
+                succes = contractLineList.remove(currentMinMaxContractLine);
             }
             if (succes){
-                JOptionPane.showMessageDialog(null, "Contract removed");
+                JOptionPane.showMessageDialog(null, "MinMaxContractLine removed");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Contract was not removed!");
+                JOptionPane.showMessageDialog(null, "MinMaxContractLine was not removed!");
             }
         }
     }
-    */
-    
-    
 }
