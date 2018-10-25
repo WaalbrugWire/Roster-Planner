@@ -201,6 +201,7 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
                     booleanContractLine.setEnabled(true);
                     booleanContractLine.setWeight(1);
                     contractLineList.add(booleanContractLine);
+                    currentContract.getContractLineList().add(booleanContractLine);
                 }
                 else if ( getMinMaxContractLineRadioButtonSelected() ) {
                     MinMaxContractLine minMaxContractLine = new MinMaxContractLine();
@@ -214,6 +215,7 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
                     minMaxContractLine.setMinimumWeight(1);
                     minMaxContractLine.setMaximumWeight(1);
                     contractLineList.add(minMaxContractLine);
+                    currentContract.getContractLineList().add(minMaxContractLine);
                 }
                 //refreshing the lists
                 for (ContractLine thisContractLine:contractLineList){
@@ -344,6 +346,7 @@ public class CustomTabContractLinesPanel extends TabContractPanel{
                     }
                 }
                 if ( deleted != null ) {
+                    deleted.getContract().getContractLineList().remove(deleted);
                     contractLineList.remove(deleted);
                 }                
                 
