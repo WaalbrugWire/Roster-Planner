@@ -111,7 +111,7 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
         NurseRoster nurseRoster = mySolutionBusiness.getSolution();
         //JOptionPane.showMessageDialog(null, "Selection changed in Contract list");
         
-        DefaultListModel listModelMinMaxCL = new DefaultListModel();
+        DefaultListModel listModelMinMaxContractLines = new DefaultListModel();
         
         List<Contract> contractList = nurseRoster.getContractList();
         List<ContractLine> contractLineList = nurseRoster.getContractLineList();
@@ -140,7 +140,7 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                     max = "-";
                 }
                     
-                listModelMinMaxCL.addElement( min + "/" + max + " " + minMaxContractLine.toString());
+                listModelMinMaxContractLines.addElement( min + "/" + max + " - " + minMaxContractLine.toString());
             }
         }
         
@@ -164,37 +164,7 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
                 initialMaxEnabledChecked = minMaxContractLineList.get(i).isMaximumEnabled();
                 setMaxEnabledCheckBox(initialMaxEnabledChecked);
                 
-                //JOptionPane.showMessageDialog(null, "Populating Contractlines for this contract");
-                /*
-                for (ContractLine contractLine:contractLineList){
-                    if (contractList.get(i).getCode().equals(contractLine.getContract().getCode()) ){
-                        listModelAssigned.addElement(contractLine.toString());
-                    }
-                }
-                //ContractLineType is an enum and not a list
-                
-                boolean found;
-                for (ContractLineType contractLineType:ContractLineType.values()) {
-                    found = false;
-                    for (ContractLine contractLine:contractLineList){
-                        if (contractList.get(i).getCode().equals(contractLine.getContract().getCode()) ){
-                            if (contractLine.getContractLineType().equals(contractLineType)){
-                                found = true;
-                            }
-                        }
-                    }
-                    if (!found){
-                        listModelUnassigned.addElement(contractLineType.toString());
-                    }
-                }
-                //JOptionPane.showMessageDialog(null, "Setting list in Listbox");
-                                
-                setContractLinesListBox(listModelAssigned);
-                
-                //JOptionPane.showMessageDialog(null, "List is ready in Listbox");
-                */
-                
-                //setContractLinesListBox(listModelMinMaxCL);
+                setContractLinesListBox(listModelMinMaxContractLines);
             }
         }
     }
@@ -230,31 +200,82 @@ public class CustomTabMinMaxContractLinesPanel extends TabMinMaxContractLinesPan
         }
     }
     
-    //TODO implement OK New and Delete
-    /*
+    
     @Override
     public void handleOKButtonClicked(){
         NurseRoster nurseRoster = mySolutionBusiness.getSolution();
         List<Contract> contractList = nurseRoster.getContractList();
-        
+        int parsedValue;
         int result = JOptionPane.showConfirmDialog( this.getTopLevelAncestor(), "Do you want to commit changes? \n",
                             "MinMaxContractLine has changed.",
                             JOptionPane.OK_CANCEL_OPTION);
                 //, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION){
             //contractList.get(currentContractSelection).setCode(getCode());
-            currentContract.setCode(getCode());
-            currentContract.setDescription(getDescription());
-            for(WeekendDefinition w:WeekendDefinition.values()){
-                if( w.toString().equals(getWeekendDefinition())){
-                    currentContract.setWeekendDefinition(w);
-                }
+            try {
+                parsedValue = Integer.parseInt(getMinValue());
+                currentMinMaxContractLine.setMinimumValue(parsedValue);
+                initialMinValue = parsedValue;
             }
-            initialCode = getCode();
-            initialDescription = getDescription();
-            initialWeekendDefinition = getWeekendDefinition();
+            catch (NumberFormatException e) { 
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for minValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for minValue in MinMaxContractLines");
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for minValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Unknown Exception occurred parsing string into int for minValue in MinMaxContractLines");
+            }
+            
+            try {
+                parsedValue = Integer.parseInt(getMaxValue());
+                currentMinMaxContractLine.setMaximumValue(parsedValue);
+                initialMaxValue = parsedValue;
+            }
+            catch (NumberFormatException e) { 
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for maxValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for maxValue in MinMaxContractLines");
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for maxValue in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Unknown Exception occurred parsing string into int for maxValue in MinMaxContractLines");
+            }
+            
+            try {
+                parsedValue = Integer.parseInt(getMinWeight());
+                currentMinMaxContractLine.setMinimumWeight(parsedValue);
+                initialMinWeight = parsedValue;
+            }
+            catch (NumberFormatException e) { 
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for minimumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for minimumWeight in MinMaxContractLines");
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for minimumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Unknown Exception occurred parsing string into int for minimumWeight in MinMaxContractLines");
+            }
+            
+            try {
+                parsedValue = Integer.parseInt(getMaxWeight());
+                currentMinMaxContractLine.setMaximumWeight(parsedValue);
+                initialMaxWeight = parsedValue;
+            }
+            catch (NumberFormatException e) { 
+                JOptionPane.showMessageDialog(null, "Could not parse string into int for maximumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Could not parse string into int for maximumWeight in MinMaxContractLines");
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Unknown Exception occurred parsing string into int for maximumWeight in MinMaxContractLines" + "\nUse numbers only!", "Parse Error", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Unknown Exception occurred parsing string into int for maximumWeight in MinMaxContractLines");
+            }
+            
+            currentMinMaxContractLine.setMinimumEnabled(getMinEnabledCheckBox());
+            currentMinMaxContractLine.setMaximumEnabled(getMaxEnabledCheckBox());
+            
         }
     }
+    
+    //TODO implement New and Delete
+    /*
     
     @Override
     public void handleNewButtonClicked(){
