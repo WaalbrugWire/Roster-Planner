@@ -10,3 +10,7 @@
 /src - backup unmodified/
 /target/
 /target - testmap/
+local/log/optaplanner.log
+data/nurserostering/unsolved/CWZ_20181015.xml
+data/nurserostering/export/Thumbs.db
+data/nurserostering/export/Roster2018-10-25.csv
