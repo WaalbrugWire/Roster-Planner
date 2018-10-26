@@ -18,6 +18,8 @@ package org.optaplanner.examples.nurserostering.persistence;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.List; //WaalBrugWire 25-10-2018
+import javax.swing.JOptionPane; //WaalBrugWire 25-10-2018
 
 import org.jdom.Element;
 import org.optaplanner.examples.common.persistence.AbstractXmlSolutionExporter;
@@ -65,7 +67,15 @@ public class NurseRosteringExporter extends AbstractXmlSolutionExporter<NurseRos
             Element softConstraintsPenaltyElement = new Element("SoftConstraintsPenalty");
             softConstraintsPenaltyElement.setText(Integer.toString(nurseRoster.getScore().getSoftScore()));
             solutionElement.addContent(softConstraintsPenaltyElement);
-
+            
+            //List<ShiftAssignment> shiftList = nurseRoster.getShiftAssignmentList(); 
+            //ShiftAssignment t = shiftList.get(0);
+            ShiftAssignment t = nurseRoster.getShiftAssignmentList().get(0); //Waalbrugwire 25-10-2018
+            if (t.getEmployee() == null){ //Waalbrugwire 25-10-2018
+            JOptionPane.showMessageDialog(null, "Error creating the XML file, use 'Solve' before 'Export'");
+            System.out.println("Error creating the XML file, use 'Solve' before 'Export'");    
+        } 
+        else {
             for (ShiftAssignment shiftAssignment : nurseRoster.getShiftAssignmentList()) {
                 Shift shift = shiftAssignment.getShift();
                 if (shift != null) {
@@ -84,6 +94,7 @@ public class NurseRosteringExporter extends AbstractXmlSolutionExporter<NurseRos
                     shiftTypeElement.setText(shift.getShiftType().getCode());
                     assignmentElement.addContent(shiftTypeElement);
                 }
+            }
             }
         }
     }
