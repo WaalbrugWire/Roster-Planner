@@ -23,6 +23,7 @@
 
   <properties>
     <java.module.name>org.optaplanner.examples</java.module.name>
+	<maven.test.skip>true</maven.test.skip>
   </properties>
 
   <repositories>
