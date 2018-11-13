@@ -1,3 +1,72 @@
+#
+# Default excludes
+#
+
+#log
+*.log
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Binaries
+*.7z
+*.class
+*.dmg
+*.ear
+*.gz
+*.iso
+*.jar
+*.nar
+*.rar
+*.sar
+*.tar
+*.tar.gz
+*.war
+*.zip
+
+# Maven
+nbactions.xml
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nb-configuration.xml
+
+# OS
+.DS_Store
+
+# Misc
+*.swp
+
+#
+# Project specific excludes
+#
+
 /src/test/java/
 /src/main/resources/org/optaplanner/examples/nurserostering/solver/nurseRosteringScoreRules.drl
 /src/main/java/org/optaplanner/examples/nurserostering/swingui/EmployeePanel.java
@@ -5,12 +74,5 @@
 /src/main/java/org/optaplanner/examples/nurserostering/swingui/PrintUIWindow.java
 /src/test/resources/
 /Roster2018-05-18.csv
-/nbactions.xml.bak
-/src - backup sept/
-/src - backup unmodified/
-/target/
-/target - testmap/
-data/nurserostering/unsolved/CWZ_20181015.xml
-local/log/optaplanner.log
 src/main/resources/logback.xml
-src/main/resources/logback.xml
+nbactions.xml
