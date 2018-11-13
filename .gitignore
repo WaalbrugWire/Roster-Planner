@@ -74,6 +74,5 @@ nb-configuration.xml
 /src/main/java/org/optaplanner/examples/nurserostering/swingui/PrintUIWindow.java
 /src/test/resources/
 /Roster2018-05-18.csv
-data/nurserostering/unsolved/CWZ_20181015.xml
 src/main/resources/logback.xml
 nbactions.xml
