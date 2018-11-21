@@ -24,6 +24,7 @@ import org.optaplanner.examples.common.domain.AbstractPersistable;
 @XStreamInclude({
         ShiftType2DaysPattern.class,
         ShiftType3DaysPattern.class,
+        ShiftType5DaysPattern.class,
         WorkBeforeFreeSequencePattern.class,
         FreeBefore2DaysWithAWorkDayPattern.class
 })
